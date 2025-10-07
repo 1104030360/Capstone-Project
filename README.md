@@ -4,7 +4,7 @@
 
 ---
 
-## 🧑‍💼 專案簡介 | Project Overview
+##  專案簡介 | Project Overview
 
 這套系統給實體門市用，兩路相機＋麥克風同步錄影錄音。  
 自動產出顧客與員工的情緒分數，報表和績效分析一鍵搞定。
@@ -18,7 +18,7 @@
 
 ---
 
-## 🏆 主要功能 | Key Features
+##  主要功能 | Key Features
 
 - **即時多模態分析**  
   同時分析臉部表情（DeepFace）、語音（Wav2Vec2 + pyannote.audio）、文字（VADER），完整量化顧客和員工的互動情緒。
