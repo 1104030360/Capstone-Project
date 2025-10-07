@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Virtual environments
+venv/
+myenv/
+.env/
+
+# IDE, Editor
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Video, binary, PDF, output files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.mp3
+*.wav
+*.flac
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.bmp
+
+# 其他
+output.*
+myapp/output.mp4
+myapp/video.mp4
+myapp/src/myapp/init/output_cam1.avi
+myapp/src/myapp/init/output_cam2.avi
+myapp/src/myapp/init/adam-*.json
