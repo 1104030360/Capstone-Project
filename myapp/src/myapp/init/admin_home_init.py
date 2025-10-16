@@ -168,10 +168,10 @@ class MediaModel(QObject):
 class MediaService:
     def __init__(self, service_id, db_connector):
         self.service_id = service_id
-        self.bucket_name = 'adam20240618_test'
-        self.local_media_dir = os.path.join(os.path.dirname(__file__), "media")
-        self.local_charts_dir = os.path.join(os.path.dirname(__file__), "charts")
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(os.path.dirname(__file__), 'adam-426508-8ab1c7900d56.json')
+        self.bucket_name = os.getenv('GCS_BUCKET')
+        self.local_media_dir = os.getenv('LOCAL_MEDIA_DIR', os.path.join(os.path.dirname(__file__), "media"))
+        self.local_charts_dir = os.getenv('LOCAL_CHARTS_DIR', os.path.join(os.path.dirname(__file__), "charts"))
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
         self.db_connector = db_connector
 
         if not os.path.exists(self.local_media_dir):

@@ -16,6 +16,8 @@ from google.cloud import storage
 import shutil
 import cv2
 import fitz
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class PDFHandler(QObject):
@@ -132,10 +134,10 @@ class MediaModel(QObject):
 class MediaService:
     def __init__(self, service_id, db_connector):
         self.service_id = service_id
-        self.bucket_name = 'adam20240618_test'
-        self.local_media_dir = os.path.join(os.path.dirname(__file__), "media")
-        self.local_charts_dir = os.path.join(os.path.dirname(__file__), "charts")
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(os.path.dirname(__file__), 'adam-426508-8ab1c7900d56.json')
+        self.bucket_name = os.getenv('GCS_BUCKET')
+        self.local_media_dir = os.getenv('LOCAL_MEDIA_DIR', os.path.join(os.path.dirname(__file__), "media"))
+        self.local_charts_dir = os.getenv('LOCAL_CHARTS_DIR', os.path.join(os.path.dirname(__file__), "charts"))
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
         self.db_connector = db_connector
 
         if not os.path.exists(self.local_media_dir):
@@ -634,7 +636,7 @@ class ServiceModel(QObject):
             print(f"Failed to analyze service {service_id}")
 
     def analyze_service(self, service_id):
-        url = 'http://202.5.255.46:5000/analyze'  # Replace with your VM IP address
+        url = os.getenv('ANALYZE_API_URL')
         payload = {'service_id': service_id}
         
         try:

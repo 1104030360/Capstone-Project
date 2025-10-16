@@ -43,3 +43,6 @@ myapp/video.mp4
 myapp/src/myapp/init/output_cam1.avi
 myapp/src/myapp/init/output_cam2.avi
 myapp/src/myapp/init/adam-*.json
+
+# 環境變數檔案
+.env

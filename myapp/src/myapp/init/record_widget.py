@@ -8,18 +8,22 @@ import os
 from datetime import datetime
 import mysql.connector
 from google.cloud import storage
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Google Cloud Storage Configuration
-GCS_BUCKET = 'adam20240618_test'
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(os.path.dirname(__file__), 'adam-426508-8ab1c7900d56.json')
+GCS_BUCKET = os.getenv('GCS_BUCKET')
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 storage_client = storage.Client()
 
 # Database Configuration
 DB_CONFIG = {
-    'user': 'ADAMuser',
-    'password': '12345',
-    'host': '202.5.254.32',
-    'database': 'ADAM',
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'host': os.getenv('DB_HOST'),
+    'database': os.getenv('DB_NAME'),
 }
 
 class RecordWidget(QtWidgets.QWidget):

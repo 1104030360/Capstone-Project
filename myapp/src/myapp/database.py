@@ -1,5 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
+import os
+from dotenv import load_dotenv
+
 
 class DatabaseConnector:
     _instance = None
@@ -13,6 +16,8 @@ class DatabaseConnector:
         if not hasattr(self, 'initialized'):
             self.initialized = True
             print("Initializing DatabaseConnector")
+            # 載入 .env
+            load_dotenv()
             self.connection = self.create_connection()
             if self.connection:
                 print("Database connection created successfully")
@@ -21,11 +26,12 @@ class DatabaseConnector:
 
     def create_connection(self):
         try:
+            # 從環境變數讀取
             connection = mysql.connector.connect(
-                host='202.5.254.32',
-                database='ADAM',
-                user='ADAMuser',
-                password='12345'
+                host=os.getenv('DB_HOST'),
+                database=os.getenv('DB_NAME'),
+                user=os.getenv('DB_USER'),
+                password=os.getenv('DB_PASSWORD')
             )
             if connection.is_connected():
                 print("Successfully connected to the database")
